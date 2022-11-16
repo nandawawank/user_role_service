@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Roles {
+  id        String  @id
+  role      String  @unique @map("role") @db.VarChar(100)
+  status    Boolean @default(false) @map("status")
+  createdBy String  @map("created_by") @db.VarChar(255)
+  createdAt BigInt  @map("created_at")
+  updatedBy String? @map("updated_by") @db.VarChar(255)
+  updatedAt BigInt? @map("updated_at")
+}
